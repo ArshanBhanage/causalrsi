@@ -1,0 +1,19 @@
+# dependencies
+node_modules/
+
+# build output
+.next/
+out/
+.turbo/
+
+# typescript incremental cache
+*.tsbuildinfo
+
+# os / sync-client noise
+.DS_Store
+*\ [0-9].*
+
+# local env
+.env
+.env.*
+!.env.example

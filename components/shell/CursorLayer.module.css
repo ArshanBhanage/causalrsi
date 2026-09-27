@@ -1,0 +1,93 @@
+.layer {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-cursor);
+  pointer-events: none;
+}
+
+.lens {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 240px;
+  height: 240px;
+  margin: -120px 0 0 -120px;
+  border-radius: 50%;
+  border: 1px solid rgba(232, 232, 227, 0.08);
+  will-change: transform, opacity;
+  transition: opacity var(--t-ui) var(--ease);
+}
+
+.lens::before {
+  content: '';
+  position: absolute;
+  inset: 84px;
+  border-radius: 50%;
+  border: 1px solid rgba(79, 216, 232, 0.35);
+}
+
+.crosshair {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 22px;
+  height: 1px;
+  margin: 0 0 0 -11px;
+  background: rgba(232, 232, 227, 0.55);
+}
+
+.crosshairV {
+  composes: crosshair;
+  width: 1px;
+  height: 22px;
+  margin: -11px 0 0 0;
+}
+
+.mode {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(26px, -50%);
+  font-family: var(--font-tech);
+  font-size: var(--t-tag-size);
+  letter-spacing: 0.16em;
+  color: var(--accent);
+  white-space: nowrap;
+}
+
+.targetId {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(26px, 12px);
+  font-family: var(--font-tech);
+  font-size: var(--t-tag-size);
+  letter-spacing: 0.14em;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.trace {
+  position: fixed;
+  left: var(--gutter);
+  bottom: calc(var(--gutter) + 34px);
+  font-family: var(--font-tech);
+  font-size: var(--t-tech-size);
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  white-space: nowrap;
+  max-width: calc(100vw - var(--gutter) * 2);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: opacity var(--t-ui) var(--ease);
+}
+
+.traceStrong {
+  color: var(--text);
+}
+
+@media (hover: none), (pointer: coarse) {
+  .lens {
+    display: none;
+  }
+}

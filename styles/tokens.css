@@ -1,0 +1,47 @@
+:root {
+  /* ---- palette -------------------------------------------------------- */
+  --bg: #050505;
+  --bg-deep: #030303;
+  --text: #e8e8e3;
+  --muted: #6e6e69;
+  --muted-dim: #3a3a37;
+  /* Spectral cyan. Reads as instrumentation rather than brand, holds at 10px
+     on near-black, and separates from --negative by lightness as well as hue. */
+  --accent: #4fd8e8;
+  --accent-dim: rgba(79, 216, 232, 0.28);
+  --negative: #8c4a45;
+
+  /* ---- depth stack ----------------------------------------------------- */
+  --z-ambient: 1;   /* Z-4 */
+  --z-counter: 2;   /* Z-3 */
+  --z-history: 3;   /* Z-2 */
+  --z-graph: 4;     /* Z-1 */
+  --z-type: 5;      /* Z0  */
+  --z-fore: 6;      /* geometry that crosses in front of type */
+  --z-chrome: 8;
+  --z-cursor: 9;
+
+  --parallax-max: 24px;
+
+  /* ---- motion tiers ---------------------------------------------------- */
+  --t-ui: 140ms;
+  --t-graph: 520ms;
+  --t-camera: 1600ms;
+  --t-ambient: 7000ms;
+  --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --ease-quint: cubic-bezier(0.83, 0, 0.17, 1);
+
+  /* ---- grid ------------------------------------------------------------ */
+  --gutter: clamp(16px, 3.2vw, 56px);
+  --rule: 1px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --t-ui: 120ms;
+    --t-graph: 200ms;
+    --t-camera: 200ms;
+    --t-ambient: 0ms;
+    --parallax-max: 0px;
+  }
+}

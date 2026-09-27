@@ -1,0 +1,35 @@
+.root {
+  position: relative;
+}
+
+/* The scroll track is the timeline. Nothing is laid out inside it. */
+.track {
+  height: 900vh;
+  pointer-events: none;
+}
+
+.canvasHost {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-graph);
+}
+
+.parallax {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-type);
+  pointer-events: none;
+  will-change: transform;
+}
+
+.noWebgl {
+  position: fixed;
+  left: var(--gutter);
+  bottom: var(--gutter);
+  font-family: var(--font-tech);
+  font-size: var(--t-tag-size);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  z-index: var(--z-chrome);
+}

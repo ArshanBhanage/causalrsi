@@ -1,0 +1,311 @@
+.stage {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-type);
+  pointer-events: none;
+}
+
+/* One frame per scene. Faded frames are inert: not clickable, not focusable, not announced. */
+.frame {
+  position: absolute;
+  inset: 0;
+  transition: opacity var(--t-graph) var(--ease);
+}
+
+/* Every slot is an absolute anchor. No sections, no containers, no cards. */
+.slot {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  transition: opacity var(--t-graph) var(--ease);
+}
+
+.topLeft {
+  composes: slot;
+  top: calc(var(--gutter) + 52px);
+  left: var(--gutter);
+}
+
+.topRight {
+  composes: slot;
+  top: calc(var(--gutter) + 52px);
+  right: calc(var(--gutter) + 152px);
+  align-items: flex-end;
+  text-align: right;
+}
+
+.bottomLeft {
+  composes: slot;
+  bottom: calc(var(--gutter) + 78px);
+  left: var(--gutter);
+}
+
+.bottomRight {
+  composes: slot;
+  bottom: calc(var(--gutter) + 44px);
+  right: calc(var(--gutter) + 152px);
+  align-items: flex-end;
+  text-align: right;
+}
+
+.midLeft {
+  composes: slot;
+  top: 44%;
+  left: var(--gutter);
+}
+
+.midRight {
+  composes: slot;
+  top: 30%;
+  right: calc(var(--gutter) + 152px);
+  align-items: flex-end;
+  text-align: right;
+}
+
+/* Display type is allowed to run off the edge of the viewport. */
+.headlineLeft {
+  position: absolute;
+  left: calc(var(--gutter) * -0.4);
+  top: 30%;
+  max-width: 108vw;
+}
+
+.headlineRight {
+  position: absolute;
+  right: calc(var(--gutter) * -0.5);
+  top: 22%;
+  text-align: right;
+}
+
+.headlineCenterLow {
+  position: absolute;
+  left: var(--gutter);
+  bottom: 22%;
+}
+
+.interactive {
+  pointer-events: auto;
+}
+
+.picker {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  pointer-events: auto;
+}
+
+.pickerItem {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  font-family: var(--font-tech);
+  font-size: var(--t-tech-size);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding: 5px 0;
+  min-height: 44px;
+  transition: color var(--t-ui) var(--ease);
+}
+
+.pickerItem:hover,
+.pickerItem:focus-visible {
+  color: var(--text);
+}
+
+.pickerItemActive {
+  composes: pickerItem;
+  color: var(--accent);
+}
+
+.rule {
+  width: 34px;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.5;
+}
+
+.control {
+  font-family: var(--font-tech);
+  font-size: var(--t-tech-size);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  pointer-events: auto;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.controlMuted {
+  composes: control;
+  color: var(--muted);
+}
+
+.table {
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 2px 18px;
+  align-items: baseline;
+}
+
+.tableRow {
+  display: contents;
+}
+
+.deltaRow {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+}
+
+.bar {
+  display: inline-block;
+  height: 1px;
+  background: var(--text);
+  opacity: 0.8;
+}
+
+.barAccent {
+  composes: bar;
+  background: var(--accent);
+  height: 2px;
+}
+
+.barNegative {
+  composes: bar;
+  background: var(--negative);
+}
+
+.barDashed {
+  composes: bar;
+  background: none;
+  border-top: 1px dashed var(--muted);
+  height: 0;
+}
+
+.legend {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.legendRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.conf {
+  /* dropped on narrow screens where the row has no room for it */
+}
+
+.annotation {
+  position: absolute;
+  font-family: var(--font-tech);
+  font-size: var(--t-tag-size);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text);
+  white-space: nowrap;
+}
+
+.note {
+  font-family: var(--font-tech);
+  font-size: var(--t-tech-size);
+  letter-spacing: 0.02em;
+  text-transform: none;
+  color: var(--muted);
+  max-width: 34ch;
+  line-height: 1.5;
+}
+
+@media (max-width: 700px) {
+  /* A distinct touch composition: the graph keeps the middle of the screen and every readout
+     is assigned its own horizontal band, so nothing overlaps and nothing overflows. */
+  .slot,
+  .topLeft,
+  .topRight,
+  .midLeft,
+  .midRight,
+  .bottomLeft,
+  .bottomRight {
+    left: var(--gutter);
+    right: var(--gutter);
+    align-items: flex-start;
+    text-align: left;
+    gap: 3px;
+    max-width: calc(100vw - var(--gutter) * 2);
+  }
+
+  .topLeft {
+    top: calc(var(--gutter) + 72px);
+    bottom: auto;
+  }
+
+  .topRight {
+    top: calc(var(--gutter) + 168px);
+    bottom: auto;
+  }
+
+  /* the graph keeps the upper half; every readout stacks in the lower band */
+  .midLeft {
+    top: auto;
+    bottom: calc(var(--gutter) + 214px);
+  }
+
+  .midRight {
+    top: auto;
+    bottom: calc(var(--gutter) + 214px);
+  }
+
+  .bottomLeft {
+    bottom: calc(var(--gutter) + 62px);
+    top: auto;
+  }
+
+  .bottomRight {
+    bottom: calc(var(--gutter) + 62px);
+    top: auto;
+  }
+
+  .conf {
+    display: none;
+  }
+
+  .table {
+    grid-template-columns: 1fr;
+    gap: 6px 0;
+  }
+
+  .tableRow {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+  }
+
+  .deltaRow {
+    gap: 8px;
+  }
+
+  .note {
+    max-width: calc(100vw - var(--gutter) * 2);
+  }
+
+  .headlineRight {
+    right: auto;
+    left: var(--gutter);
+    text-align: left;
+  }
+
+  .headlineLeft {
+    left: calc(var(--gutter) * -0.2);
+  }
+
+  .pickerItem,
+  .pickerItemActive {
+    min-height: 44px;
+  }
+}

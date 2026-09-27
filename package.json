@@ -1,0 +1,42 @@
+{
+  "name": "causalrsi-observatory",
+  "version": "0.1.0",
+  "private": true,
+  "description": "The Causal Observatory - an interactive research instrument for CausalRSI.",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint --max-warnings 0",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "review": "node scripts/review.mjs"
+  },
+  "dependencies": {
+    "@react-three/drei": "10.7.6",
+    "@react-three/fiber": "9.3.0",
+    "gsap": "3.13.0",
+    "lenis": "1.1.20",
+    "next": "15.5.26",
+    "react": "19.2.0",
+    "react-dom": "19.2.0",
+    "three": "0.180.0",
+    "zustand": "4.5.5"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3.3.3",
+    "@types/node": "22.10.2",
+    "@types/react": "19.2.2",
+    "@types/react-dom": "19.2.1",
+    "@types/three": "0.180.0",
+    "eslint": "9.38.0",
+    "eslint-config-next": "15.5.26",
+    "fast-check": "3.23.2",
+    "puppeteer-core": "^23.11.1",
+    "typescript": "5.7.2",
+    "vitest": "2.1.8"
+  },
+  "engines": {
+    "node": ">=20.9.0 <25"
+  }
+}
