@@ -64,9 +64,19 @@ export const SITE: SiteContent = {
 
   team: [
     {
+      name: 'Arshan Bhanage',
+      role: 'Research and engineering',
+      evidence: 'github.com/ArshanBhanage',
+    },
+    {
       name: 'Parth Maradia',
-      role: 'Author',
+      role: 'Research and engineering',
       evidence: 'pyproject.toml',
+    },
+    {
+      name: 'Mohsen',
+      role: 'Research',
+      evidence: 'stated by the project owner',
     },
   ],
 

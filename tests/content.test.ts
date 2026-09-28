@@ -47,10 +47,16 @@ describe('content module shape', () => {
     expect(SITE.github).toBe('https://github.com/Parth0248/CausalRSI');
   });
 
-  it('records one evidenced team entry', () => {
-    expect(SITE.team).toHaveLength(1);
-    expect(SITE.team[0]?.name).toBe('Parth Maradia');
-    expect(SITE.team[0]?.evidence).toBe('pyproject.toml');
+  it('records the three authors, each with an evidence note', () => {
+    expect(SITE.team.map((m) => m.name)).toEqual([
+      'Arshan Bhanage',
+      'Parth Maradia',
+      'Mohsen',
+    ]);
+    for (const member of SITE.team) {
+      expect(member.role.trim().length).toBeGreaterThan(0);
+      expect(member.evidence.trim().length).toBeGreaterThan(0);
+    }
   });
 
   it('nulls the fields this repository does not evidence', () => {
@@ -155,6 +161,8 @@ describe('factual strings stay out of components and shaders', () => {
     SITE.github,
     'Parth',
     'Maradia',
+    'Bhanage',
+    'Mohsen',
     'github.com',
   ];
 

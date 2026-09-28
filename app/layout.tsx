@@ -18,15 +18,31 @@ const mono = JetBrains_Mono({
   fallback: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'monospace'],
 });
 
+/**
+ * Where this build is served from. Set `NEXT_PUBLIC_SITE_URL` in the Cloudflare Pages project to
+ * the custom domain so canonical and Open Graph URLs are absolute; localhost is only a fallback
+ * for local builds.
+ */
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000';
+
 export const metadata: Metadata = {
   title: `${SITE.project} — ${SITE.tagline}`,
   description: SITE.shortDescription,
-  metadataBase: new URL(SITE.github),
+  metadataBase: new URL(siteUrl),
+  alternates: { canonical: '/' },
   openGraph: {
     title: SITE.project,
     description: SITE.shortDescription,
+    url: '/',
+    siteName: SITE.project,
     type: 'website',
   },
+  twitter: {
+    card: 'summary',
+    title: SITE.project,
+    description: SITE.shortDescription,
+  },
+  robots: { index: true, follow: true },
 };
 
 export const viewport: Viewport = {
