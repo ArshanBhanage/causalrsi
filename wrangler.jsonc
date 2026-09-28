@@ -2,6 +2,9 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "causalrsi",
   "compatibility_date": "2026-09-28",
+  "build": {
+    "command": "npm run build"
+  },
   "assets": {
     "directory": "./out",
     "html_handling": "auto-trailing-slash",

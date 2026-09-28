@@ -29,6 +29,7 @@
     "@types/react": "19.2.2",
     "@types/react-dom": "19.2.1",
     "@types/three": "0.180.0",
+    "caniuse-lite": "^1.0.30001812",
     "eslint": "9.38.0",
     "eslint-config-next": "15.5.26",
     "fast-check": "3.23.2",
